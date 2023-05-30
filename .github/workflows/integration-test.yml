@@ -24,6 +24,8 @@ jobs:
         name: "test-asdf"
         status: in_progress
         sha:  ${{ github.event.pull_request.head.sha }}
+        output: |
+          "I'm starting"
     - name: Checkout cli
       uses: actions/checkout@v3
       with:
@@ -46,3 +48,6 @@ jobs:
         name: "test-asdf"
         conclusion: ${{ job.status }}
         sha:  ${{ github.event.pull_request.head.sha }}
+        output: |
+          {"summary":"${{ steps.test-secret.outputs.summary }}"}
+
