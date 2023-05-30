@@ -22,7 +22,7 @@ jobs:
         github-token: ${{secrets.GITHUB_TOKEN}}
         script: |
             github.rest.issues.createComment({
-              issue_number: ${{ github.workflow_run.event.number }},
+              issue_number: ${{ github.workflow_run }},
               owner: ${{ github.repository_owner }},
               repo: ${{ github.repository }},
               body: "started asdf ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
@@ -47,7 +47,7 @@ jobs:
         github-token: ${{secrets.GITHUB_TOKEN}}
         script: |
             github.rest.issues.createComment({
-              issue_number: ${{ github.workflow_run.event.number }},
+              issue_number: ${{ github.workflow_run }},
               owner: ${{ github.repository_owner }},
               repo: ${{ github.repository }},
               body: "finished asdf ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
