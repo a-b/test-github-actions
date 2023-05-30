@@ -20,11 +20,11 @@ jobs:
     - uses: actions/github-script@v6
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
-        test: ${{ toJSON(github.event.workflow_run) }}
         script: |
             github.rest.issues.createComment({
               issue_number: ${{ github.event.workflow_run.pull_requests[0].number }},
               owner: "${{ github.repository_owner }}",
+              debug:  ${{ toJSON(github) }}
               repo: "${{github.event.workflow_run.repository.name }}",
               body: "started asdf ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
             })
