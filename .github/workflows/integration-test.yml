@@ -27,17 +27,6 @@ jobs:
               repo: ${{ github.repository }},
               body: "started asdf ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
             })
-
-    - uses: LouisBrunner/checks-action@v1.6.0
-      if: always()
-      id: check
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        name: "test-asdf"
-        status: in_progress
-        sha:  ${{github.event.workflow_run.head_sha}}
-        output: |
-          {"title": "asdf", "summary":"started "}
     - name: Checkout cli
       uses: actions/checkout@v3
       with:
