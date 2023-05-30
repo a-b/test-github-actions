@@ -8,9 +8,6 @@ on:
     types: 
       - completed
 
-permissions:
-  contents: read
-
 jobs: 
   test-asdf:
     runs-on: ubuntu-latest
