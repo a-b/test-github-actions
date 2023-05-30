@@ -23,6 +23,7 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         name: "test-asdf"
         status: in_progress
+        repo: ${{github.event.workflow_run.repository.id}}
         sha:  ${{github.event.workflow_run.head_sha}}
         output: |
           {"summary":"I'm starting"}
@@ -48,6 +49,7 @@ jobs:
         name: "test-asdf"
         conclusion: ${{ job.status }}
         sha:  ${{github.event.workflow_run.head_sha}}
+        repo: ${{github.event.workflow_run.repository.id}}
         output: |
           {"summary":"${{ steps.test-secret.outputs.summary }}"}
 
