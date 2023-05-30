@@ -20,6 +20,13 @@ jobs:
       run:
         shell: bash
     steps:
+    - uses: LouisBrunner/checks-action@v1.6.0
+      if: always()
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        name: "test-integration"
+        status: in_progress
+        sha:  ${{github.event.workflow_run.head_sha}}
     - name: Checkout cli
       uses: actions/checkout@v3
       with:
@@ -35,3 +42,10 @@ jobs:
         fi
         echo  $test_var
         cat testfile
+    - uses: LouisBrunner/checks-action@v1.6.0
+      if: always()
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        name: "test-integration"
+        conclusion: ${{ job.status }}
+        sha:  ${{github.event.workflow_run.head_sha}}
