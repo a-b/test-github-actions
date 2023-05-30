@@ -27,7 +27,7 @@ jobs:
         repo: ${{github.event.workflow_run.head_repository.full_name}}
         sha:  ${{github.event.workflow_run.head_sha}}
         output: |
-          {"summary":"I'm starting"}
+          {"title": "asdf", "summary":"I'm starting"}
     - name: Checkout cli
       uses: actions/checkout@v3
       with:
@@ -52,5 +52,5 @@ jobs:
         sha:  ${{github.event.workflow_run.head_sha}}
         repo: ${{github.event.workflow_run.head_repository.full_name}}
         output: |
-          {"summary":"finished"}
+          {"title": "asdf", "summary":"finished"}
 
