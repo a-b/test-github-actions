@@ -22,6 +22,8 @@ jobs:
     steps:
     - name: Checkout cli
       uses: actions/checkout@v3
+      with:
+        ref: ${{github.event.workflow_run.head_sha}}
     - id: test-secret
       name: test secret
       env:
