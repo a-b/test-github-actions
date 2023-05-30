@@ -52,5 +52,5 @@ jobs:
         sha:  ${{github.event.workflow_run.head_sha}}
         repo: ${{github.event.workflow_run.head_repository.full_name}}
         output: |
-          {"summary":"${{ steps.test-secret.outputs.summary }}"}
+          {"summary":"finished"}
 
