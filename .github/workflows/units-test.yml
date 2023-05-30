@@ -20,7 +20,7 @@ jobs:
     - id: test-exit
       name: test-exit
       env:
-        exit_code: ${{ vars.EXIT_CODE_UNITS }}
+        exit_code: 1
       run: |
         exit $exit_code
 
