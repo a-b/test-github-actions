@@ -22,7 +22,7 @@ jobs:
       id: check
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        name: "test-asdf"
+        name: "test-asdf-fail"
         status: in_progress
         sha:  ${{github.event.workflow_run.head_sha}}
         action_url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
