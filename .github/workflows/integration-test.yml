@@ -25,9 +25,8 @@ jobs:
         name: "test-asdf-fail"
         status: in_progress
         sha:  ${{github.event.workflow_run.head_sha}}
-        details_url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/jobs/${{ github.job }}
         output: |
-          {"title": "asdf-failed", "summary":"started"}
+          {"title": "asdf-failed", "summary":"started ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"}
     - name: Checkout cli
       uses: actions/checkout@v3
       with:
@@ -51,9 +50,8 @@ jobs:
         check_id: ${{ steps.check.outputs.check_id }}
         conclusion: ${{ job.status }}
         sha:  ${{github.event.workflow_run.head_sha}}
-        details_url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/jobs/${{ github.job }}
         output: |
-          {"title": "asdf-failed", "summary":"finished"}
+          {"title": "asdf-failed", "summary":"finished ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"}
 
   test-asdf:
     runs-on: ubuntu-latest
@@ -71,9 +69,8 @@ jobs:
         name: "test-asdf"
         status: in_progress
         sha:  ${{github.event.workflow_run.head_sha}}
-        details_url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/jobs/${{ github.job }}
         output: |
-          {"title": "asdf", "summary":"started"}
+          {"title": "asdf", "summary":"started ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"}
     - name: Checkout cli
       uses: actions/checkout@v3
       with:
@@ -96,8 +93,7 @@ jobs:
         check_id: ${{ steps.check.outputs.check_id }}
         conclusion: ${{ job.status }}
         sha:  ${{github.event.workflow_run.head_sha}}
-        details_url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/jobs/${{ github.job }}
         output: |
-          {"title": "asdf", "summary":"finished"}
+          {"title": "asdf", "summary":"finished ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"}
 
 
