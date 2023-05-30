@@ -9,50 +9,6 @@ on:
       - completed
 
 jobs: 
-  test-asdf-fail:
-    runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
-    name: test-asdf-fail
-    defaults:
-      run:
-        shell: bash
-    steps:
-    - uses: LouisBrunner/checks-action@v1.6.0
-      if: always()
-      id: check
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        name: "test-asdf-fail"
-        status: in_progress
-        sha:  ${{github.event.workflow_run.head_sha}}
-        output: |
-          {"title": "asdf-failed", "summary":"started ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"}
-    - name: Checkout cli
-      uses: actions/checkout@v3
-      with:
-        ref: ${{github.event.workflow_run.head_sha}}
-    - id: test-secret
-      name: test secret
-      env:
-        test_secret: ${{ secrets.TEST_SECRET }}
-        test_var: ${{ vars.TEST_VAR }}
-      run: |
-        if [ test_secret1 == $test_secret ]; then
-          echo "I SEE SECERET"
-        fi
-        echo  $test_var
-        cat testfile
-        exit 1
-    - uses: LouisBrunner/checks-action@v1.6.0
-      if: always()
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        check_id: ${{ steps.check.outputs.check_id }}
-        conclusion: ${{ job.status }}
-        sha:  ${{github.event.workflow_run.head_sha}}
-        output: |
-          {"title": "asdf-failed", "summary":"finished ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"}
-
   test-asdf:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
@@ -61,6 +17,17 @@ jobs:
       run:
         shell: bash
     steps:
+    - uses: actions/github-script@v5
+      with:
+        github-token: ${{secrets.GITHUB_TOKEN}}
+        script: |
+            github.rest.issues.createComment({
+              issue_number: ${{ github.event.workflow_run.pull_requests.number }},
+              owner: ${{ github.repository_owner }},
+              repo: ${{ github.repository }},
+              body: "started asdf ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+            })
+
     - uses: LouisBrunner/checks-action@v1.6.0
       if: always()
       id: check
@@ -70,7 +37,7 @@ jobs:
         status: in_progress
         sha:  ${{github.event.workflow_run.head_sha}}
         output: |
-          {"title": "asdf", "summary":"started ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"}
+          {"title": "asdf", "summary":"started "}
     - name: Checkout cli
       uses: actions/checkout@v3
       with:
@@ -86,14 +53,14 @@ jobs:
         fi
         echo  $test_var
         cat testfile
-    - uses: LouisBrunner/checks-action@v1.6.0
-      if: always()
+    - uses: actions/github-script@v5
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        check_id: ${{ steps.check.outputs.check_id }}
-        conclusion: ${{ job.status }}
-        sha:  ${{github.event.workflow_run.head_sha}}
-        output: |
-          {"title": "asdf", "summary":"finished ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"}
-
+        github-token: ${{secrets.GITHUB_TOKEN}}
+        script: |
+            github.rest.issues.createComment({
+              issue_number: ${{ github.event.workflow_run.pull_requests.number }},
+              owner: ${{ github.repository_owner }},
+              repo: ${{ github.repository }},
+              body: "finished asdf ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+            })
 
