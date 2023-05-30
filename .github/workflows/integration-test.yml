@@ -26,6 +26,8 @@ jobs:
         status: in_progress
         sha:  ${{github.event.workflow_run.head_sha}}
         action_url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        output: |
+          {"title": "asdf-failed", "summary":"started"}
     - name: Checkout cli
       uses: actions/checkout@v3
       with:
@@ -50,6 +52,8 @@ jobs:
         conclusion: ${{ job.status }}
         sha:  ${{github.event.workflow_run.head_sha}}
         action_url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        output: |
+          {"title": "asdf-failed", "summary":"finished"}
 
   test-asdf:
     runs-on: ubuntu-latest
@@ -68,6 +72,8 @@ jobs:
         status: in_progress
         sha:  ${{github.event.workflow_run.head_sha}}
         action_url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        output: |
+          {"title": "asdf", "summary":"started"}
     - name: Checkout cli
       uses: actions/checkout@v3
       with:
@@ -91,4 +97,7 @@ jobs:
         conclusion: ${{ job.status }}
         sha:  ${{github.event.workflow_run.head_sha}}
         action_url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        output: |
+          {"title": "asdf", "summary":"finished"}
+
 
