@@ -25,7 +25,7 @@ jobs:
         status: in_progress
         sha:  ${{ github.event.pull_request.head.sha }}
         output: |
-          "I'm starting"
+          {"summary":"I'm starting"}
     - name: Checkout cli
       uses: actions/checkout@v3
       with:
