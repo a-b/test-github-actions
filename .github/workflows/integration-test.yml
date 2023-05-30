@@ -1,4 +1,4 @@
-name: "TEST Integration"
+name: "TEST asdf"
 
 on:
   workflow_dispatch:
@@ -12,10 +12,10 @@ permissions:
   contents: read
 
 jobs: 
-  test-integration:
+  test-asdf:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
-    name: test-integration
+    name: test-asdf
     defaults:
       run:
         shell: bash
@@ -24,7 +24,7 @@ jobs:
       if: always()
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        name: "test-integration"
+        name: "test-asdf"
         status: in_progress
         sha:  ${{github.event.workflow_run.head_sha}}
     - name: Checkout cli
@@ -46,6 +46,6 @@ jobs:
       if: always()
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        name: "test-integration"
+        name: "test-asdf"
         conclusion: ${{ job.status }}
         sha:  ${{github.event.workflow_run.head_sha}}
