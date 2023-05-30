@@ -25,7 +25,7 @@ jobs:
         name: "test-asdf-fail"
         status: in_progress
         sha:  ${{github.event.workflow_run.head_sha}}
-        action_url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        details_url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/jobs/${{ github.job }}
         output: |
           {"title": "asdf-failed", "summary":"started"}
     - name: Checkout cli
@@ -51,7 +51,7 @@ jobs:
         check_id: ${{ steps.check.outputs.check_id }}
         conclusion: ${{ job.status }}
         sha:  ${{github.event.workflow_run.head_sha}}
-        action_url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        details_url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/jobs/${{ github.job }}
         output: |
           {"title": "asdf-failed", "summary":"finished"}
 
@@ -71,7 +71,7 @@ jobs:
         name: "test-asdf"
         status: in_progress
         sha:  ${{github.event.workflow_run.head_sha}}
-        action_url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        details_url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/jobs/${{ github.job }}
         output: |
           {"title": "asdf", "summary":"started"}
     - name: Checkout cli
@@ -96,7 +96,7 @@ jobs:
         check_id: ${{ steps.check.outputs.check_id }}
         conclusion: ${{ job.status }}
         sha:  ${{github.event.workflow_run.head_sha}}
-        action_url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        details_url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/jobs/${{ github.job }}
         output: |
           {"title": "asdf", "summary":"finished"}
 
