@@ -27,7 +27,7 @@ jobs:
         test_secret: ${{ secrets.TEST_SECRET }}
         test_var: ${{ vars.TEST_VAR }}
       run: |
-        if [ test_secret == $test_secret ]; then
+        if [ test_secret1 == $test_secret ]; then
           echo "I SEE SECERET"
         fi
         echo  $test_var
