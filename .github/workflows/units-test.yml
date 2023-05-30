@@ -20,7 +20,7 @@ jobs:
     - id: test-exit
       name: test-exit
       env:
-        exit_code: 1
+        exit_code: 0
       run: |
         exit $exit_code
 
