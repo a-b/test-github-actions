@@ -19,6 +19,7 @@ jobs:
     steps:
     - uses: LouisBrunner/checks-action@v1.6.0
       if: always()
+      id: check
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         name: "test-asdf"
@@ -46,7 +47,7 @@ jobs:
       if: always()
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        name: "test-asdf"
+        check_id: ${{ steps.check.outputs.check_id }}
         conclusion: ${{ job.status }}
         sha:  ${{github.event.workflow_run.head_sha}}
         repo: ${{github.event.workflow_run.head_repository.full_name}}
