@@ -25,8 +25,7 @@ jobs:
         name: "test-asdf"
         status: in_progress
         sha:  ${{github.event.workflow_run.head_sha}}
-        output: |
-          {"title": "asdf", "summary":"I'm starting"}
+        actions_url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
     - name: Checkout cli
       uses: actions/checkout@v3
       with:
@@ -50,8 +49,7 @@ jobs:
         check_id: ${{ steps.check.outputs.check_id }}
         conclusion: ${{ job.status }}
         sha:  ${{github.event.workflow_run.head_sha}}
-        output: |
-          {"title": "asdf", "summary":"finished"}
+        actions_url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
   test-asdf:
     runs-on: ubuntu-latest
@@ -69,8 +67,7 @@ jobs:
         name: "test-asdf"
         status: in_progress
         sha:  ${{github.event.workflow_run.head_sha}}
-        output: |
-          {"title": "asdf", "summary":"I'm starting"}
+        actions_url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
     - name: Checkout cli
       uses: actions/checkout@v3
       with:
@@ -93,6 +90,5 @@ jobs:
         check_id: ${{ steps.check.outputs.check_id }}
         conclusion: ${{ job.status }}
         sha:  ${{github.event.workflow_run.head_sha}}
-        output: |
-          {"title": "asdf", "summary":"finished"}
+        actions_url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
