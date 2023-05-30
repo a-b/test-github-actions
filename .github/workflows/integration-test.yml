@@ -26,7 +26,7 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         name: "test-asdf"
         status: in_progress
-        sha:  ${{github.event.workflow_run.head_sha}}
+        sha:  ${{ github.event.pull_request.head.sha }}
     - name: Checkout cli
       uses: actions/checkout@v3
       with:
@@ -48,4 +48,4 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         name: "test-asdf"
         conclusion: ${{ job.status }}
-        sha:  ${{github.event.workflow_run.head_sha}}
+        sha:  ${{ github.event.pull_request.head.sha }}
