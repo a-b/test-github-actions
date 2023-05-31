@@ -1,4 +1,4 @@
-name: "TEST asdf"
+name: "TEST integration"
 
 on:
   workflow_dispatch:
@@ -9,10 +9,10 @@ on:
       - completed
 
 jobs: 
-  test-asdf-fail:
+  test-integration-fail:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
-    name: test-asdf-fail
+    name: test-integration-fail
     defaults:
       run:
         shell: bash
@@ -22,11 +22,11 @@ jobs:
       id: check
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        name: "test-asdf-fail-${{ github.run_number }}"
+        name: "test-integration-fail-${{ github.run_number }}"
         status: in_progress
         sha:  ${{github.event.workflow_run.head_sha}}
-        output: |
-          {"title": "asdf-failed", "summary":"started ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"}
+        # output: |
+        #   {"title": "integration-failed", "summary":"started ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"}
     - name: Checkout cli
       uses: actions/checkout@v3
       with:
@@ -51,12 +51,12 @@ jobs:
         conclusion: ${{ job.status }}
         sha:  ${{github.event.workflow_run.head_sha}}
         output: |
-          {"title": "asdf-failed", "summary":"finished ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"}
+          {"title": "integration-failed", "summary":"finished ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"}
 
-  test-asdf:
+  test-integration:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
-    name: test-asdf
+    name: test-integration
     defaults:
       run:
         shell: bash
@@ -66,11 +66,11 @@ jobs:
       id: check
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        name: "test-asdf-${{ github.run_number }}"
+        name: "test-integration-${{ github.run_number }}"
         status: in_progress
         sha:  ${{github.event.workflow_run.head_sha}}
         output: |
-          {"title": "asdf", "summary":"started ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"}
+          {"title": "integration", "summary":"started ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"}
     - name: Checkout cli
       uses: actions/checkout@v3
       with:
@@ -93,7 +93,7 @@ jobs:
         check_id: ${{ steps.check.outputs.check_id }}
         conclusion: ${{ job.status }}
         sha:  ${{github.event.workflow_run.head_sha}}
-        output: |
-          {"title": "asdf", "summary":"finished ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"}
+        # output: |
+        #   {"title": "integration", "summary":"finished ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"}
 
 
