@@ -25,8 +25,8 @@ jobs:
         name: "test-integration-fail-${{ github.run_number }}"
         status: in_progress
         sha:  ${{github.event.workflow_run.head_sha}}
-        # output: |
-        #   {"title": "integration-failed", "summary":"started ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"}
+        output: |
+          {"title": "integration-failed", "summary":"started ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"}
     - name: Checkout cli
       uses: actions/checkout@v3
       with:
@@ -50,8 +50,8 @@ jobs:
         check_id: ${{ steps.check.outputs.check_id }}
         conclusion: ${{ job.status }}
         sha:  ${{github.event.workflow_run.head_sha}}
-        # output: |
-        #   {"title": "integration-failed", "summary":"finished ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"}
+        output: |
+          {"title": "integration-failed", "summary":"finished ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"}
 
   test-integration:
     runs-on: ubuntu-latest
@@ -69,8 +69,8 @@ jobs:
         name: "test-integration-${{ github.run_number }}"
         status: in_progress
         sha:  ${{github.event.workflow_run.head_sha}}
-        # output: |
-        #   {"title": "integration", "summary":"started ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"}
+        output: |
+          {"title": "integration", "summary":"started ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"}
     - name: Checkout cli
       uses: actions/checkout@v3
       with:
@@ -93,7 +93,7 @@ jobs:
         check_id: ${{ steps.check.outputs.check_id }}
         conclusion: ${{ job.status }}
         sha:  ${{github.event.workflow_run.head_sha}}
-        # output: |
-        #   {"title": "integration", "summary":"finished ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"}
+        output: |
+          {"title": "integration", "summary":"finished ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"}
 
 
