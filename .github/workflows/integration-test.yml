@@ -11,47 +11,22 @@ on:
 run-name: TEST Integration ${{ github.deploy_target }} by @${{ github.actor }}
 
 jobs: 
-  test-asdf:
-    runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
-    name: test-asdf
-    defaults:
-      run:
-        shell: bash
-    steps:
-    - uses: actions/github-script@v6
-      with:
-        github-token: ${{secrets.GITHUB_TOKEN}}
-        script: |
-            github.rest.issues.createComment({
-              issue_number: ${{ github.event.workflow_run.pull_requests[0].number }},
-              owner: "${{ github.repository_owner }}",
-              repo: "${{github.event.workflow_run.repository.name }}",
-              body: "started asdf ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-            })
-    - name: Checkout cli
-      uses: actions/checkout@v3
-      with:
-        ref: ${{github.event.workflow_run.head_sha}}
-    - id: test-secret
-      name: test secret
-      env:
-        test_secret: ${{ secrets.TEST_SECRET }}
-        test_var: ${{ vars.TEST_VAR }}
-      run: |
-        if [ test_secret1 == $test_secret ]; then
-          echo "I SEE SECERET"
-        fi
-        echo  $test_var
-        cat testfile
-    - uses: actions/github-script@v6
-      with:
-        github-token: ${{secrets.GITHUB_TOKEN}}
-        script: |
-            github.rest.issues.createComment({
-              issue_number: ${{ github.event.workflow_run.pull_requests[0].number }},
-              owner: "${{ github.repository_owner }}",
-              repo: "${{github.event.workflow_run.repository.name }}",
-              body: "finished asdf ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-            })
+  run-integration-tests-cf-env-with-edge-capi:
+    name: Integration tests with EDGE CAPI
+    if: github.event.workflow_run.conclusion == 'success'
+    uses: ./.github/workflows/integration-reusable.yml
+    with:
+      os: ubuntu-latest
+      name: Integration EDGE CAPI
+    secrets: inherit
 
+  run-integration-tests-cf-env-with-edge-capi-with-client-creds:
+    name: EDGE CAPI and client creds
+    if: github.event.workflow_run.conclusion == 'success'
+    uses: ./.github/workflows/integration-reusable.yml
+    with:
+      capi-version: edge
+      run-with-client-creds: true
+      os: ubuntu-latest
+      name: Integration EDGE CAPI client creds
+    secrets: inherit
