@@ -25,6 +25,17 @@ jobs:
     steps:
     - run: echo PAYLOAD ${{ inputs.os }}
     - run: echo github context ${{ toJson(github) }}
+    - run: echo env context ${{ toJson(env) }}
+    - run: echo vars context ${{ toJson(vars) }}
+    - run: echo job context ${{ toJson(job) }}
+    - run: echo jobs context ${{ toJson(jobs) }}
+    - run: echo steps context ${{ toJson(steps) }}
+    - run: echo runner context ${{ toJson(runner) }}
+    - run: echo secrets context ${{ toJson(secrets) }}
+    - run: echo strategy context ${{ toJson(strategy) }}
+    - run: echo matrix context ${{ toJson(matrix) }}
+    - run: echo needs context ${{ toJson(needs) }}
+    - run: echo inputs context ${{ toJson(inputs) }}
 
     - uses: actions/github-script@v6
       with:
