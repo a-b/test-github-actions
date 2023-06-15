@@ -10,7 +10,7 @@ on:
         required: true
         type: string
 
-run-name: reusable run-name ${{ github.ref }}
+run-name: reusable run-name for ${{ github.event.head_branch }}
 # TODO: check run-name
 jobs:
   run-integration-tests:
