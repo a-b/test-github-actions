@@ -8,7 +8,7 @@ on:
     types: 
       - completed
 
-run-name: TEST Integration base run-name ${{ github.ref }} by @${{ github.actor }}
+run-name: TEST Integration for ${{ github.event.head_branch }}
 
 jobs: 
   run-integration-tests-cf-env-with-edge-capi:
