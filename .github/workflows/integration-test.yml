@@ -1,4 +1,4 @@
-name: "TEST asdf"
+name: "TEST Integration"
 
 on:
   workflow_dispatch:
