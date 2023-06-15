@@ -8,7 +8,7 @@ on:
     types: 
       - completed
 
-run-name: "foo bar"
+run-name: TEST Integration ${{ github.deploy_target }} by @${{ github.actor }}
 
 jobs: 
   test-asdf:
