@@ -10,11 +10,12 @@ on:
         required: true
         type: string
 
+run-name: reusable run-name ${{ github.ref }}
 # TODO: check run-name
 jobs:
   run-integration-tests:
     # TODO: check name
-    name: test-asdf
+    name: reusable job-name ${{ github.ref }}
     defaults:
       run:
         shell: bash
