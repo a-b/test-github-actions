@@ -8,6 +8,8 @@ on:
     types: 
       - completed
 
+run-name: "foo bar"
+
 jobs: 
   test-asdf:
     runs-on: ubuntu-latest
