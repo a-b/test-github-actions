@@ -2,9 +2,6 @@ name: "TEST Unit"
 
 on:
   workflow_dispatch:
-  push:
-    tags:
-      - "v1.*"
       
   pull_request:
     branches:
