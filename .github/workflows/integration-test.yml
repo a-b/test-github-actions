@@ -8,7 +8,7 @@ on:
     types: 
       - completed
 
-run-name: "TEST Integration: ${{ github.event.workflow_run.head_commit.message }}"
+run-name: "TEST Integration: ${{ github.event.workflow_run.head_branch }}: ${{ github.event.workflow_run.head_commit.message }}"
 
 jobs: 
   run-integration-tests-cf-env-with-edge-capi:
