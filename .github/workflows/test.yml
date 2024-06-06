@@ -1,5 +1,6 @@
 on:
   workflow-dispatch:
+  push:
 
 jobs:
   run-integration-tests:
